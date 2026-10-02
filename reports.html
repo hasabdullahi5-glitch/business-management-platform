@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reports - Business Management Platform</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+    <div class="dashboard">
+
+        <h1>Business Reports</h1>
+
+        <p>
+            View an overview of your business performance.
+        </p>
+
+
+        <!-- Navigation -->
+
+        <nav class="dashboard-nav">
+
+            <a href="/dashboard">Dashboard</a>
+
+            <a href="/products">Products</a>
+
+            <a href="/customers">Customers</a>
+
+            <a href="/sales">Sales</a>
+
+            <a href="/expenses">Expenses</a>
+
+            <a href="/reports">Reports</a>
+
+            <a href="/settings">⚙ Settings</a>
+
+        </nav>
+
+
+        <!-- Report Cards -->
+
+        <div class="dashboard-cards">
+
+            <div class="card">
+
+                <h3>Total Sales</h3>
+
+                <p>
+                    {{ currency_symbol }}{{ total_sales }}
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Total Expenses</h3>
+
+                <p>
+                    {{ currency_symbol }}{{ total_expenses }}
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Profit</h3>
+
+                <p>
+                    {{ currency_symbol }}{{ profit }}
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Products</h3>
+
+                <p>
+                    {{ product_count }}
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Business Summary -->
+
+        <h2>Business Summary</h2>
+
+        <div class="card">
+
+            <p>
+                Total Customers:
+                <strong>{{ customer_count }}</strong>
+            </p>
+
+            <p>
+                Total Products:
+                <strong>{{ product_count }}</strong>
+            </p>
+
+            <p>
+                Total Sales:
+                <strong>{{ currency_symbol }}{{ total_sales }}</strong>
+            </p>
+
+            <p>
+                Total Expenses:
+                <strong>{{ currency_symbol }}{{ total_expenses }}</strong>
+            </p>
+
+            <p>
+                Profit:
+                <strong>{{ currency_symbol }}{{ profit }}</strong>
+            </p>
+
+        </div>
+
+
+        <br>
+
+        <a href="/dashboard">Back to Dashboard</a>
+
+    </div>
+
+</body>
+
+</html>

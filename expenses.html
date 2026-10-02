@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Expenses - Business Management Platform</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <h1>Expenses</h1>
+
+    <p>Record and manage your business expenses.</p>
+
+
+    <form method="POST" action="/expenses">
+
+        <label>Description</label>
+
+        <input
+            type="text"
+            name="description"
+            placeholder="Enter expense description"
+            required
+        >
+
+        <br><br>
+
+
+        <label>Amount</label>
+
+        <input
+            type="number"
+            name="amount"
+            placeholder="Enter amount"
+            required
+        >
+
+        <br><br>
+
+
+        <button type="submit">
+            Add Expense
+        </button>
+
+    </form>
+
+
+    <br><br>
+
+
+    <h2>Expense History</h2>
+
+    <table>
+
+        <tr>
+
+            <th>ID</th>
+
+            <th>Date & Time</th>
+
+            <th>Description</th>
+
+            <th>Amount</th>
+
+        </tr>
+
+
+        {% for expense in expenses %}
+
+        <tr>
+
+            <td>{{ expense[0] }}</td>
+
+            <td>
+                {{ expense[3] if expense[3] else "Old Record" }}
+            </td>
+
+            <td>{{ expense[1] }}</td>
+
+            <td>
+                {{ currency_symbol }}{{ expense[2] }}
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+
+    <br>
+
+
+    <a href="/dashboard">
+        Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+
+</html>

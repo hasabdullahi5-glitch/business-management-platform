@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Customers - Business Management Platform</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <h1>Customers</h1>
+
+        <p>Add and manage your customers.</p>
+
+
+        <!-- Add Customer -->
+
+        <form method="POST" action="/customers">
+
+            <label>Customer Name</label>
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Enter customer name"
+                required
+            >
+
+            <br><br>
+
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter customer email"
+                required
+            >
+
+            <br><br>
+
+
+            <label>Phone Number</label>
+
+            <input
+                type="text"
+                name="phone"
+                placeholder="Enter phone number"
+                required
+            >
+
+            <br><br>
+
+
+            <button type="submit">
+                Add Customer
+            </button>
+
+        </form>
+
+
+        <br><br>
+
+
+        <!-- Customer List -->
+
+        <h2>Customer List</h2>
+
+        <table border="1" cellpadding="10">
+
+            <tr>
+
+                <th>ID</th>
+
+                <th>Name</th>
+
+                <th>Email</th>
+
+                <th>Phone</th>
+
+                <th>Actions</th>
+
+            </tr>
+
+
+            {% for customer in customers %}
+
+            <tr>
+
+                <td>{{ customer[0] }}</td>
+
+                <td>{{ customer[1] }}</td>
+
+                <td>{{ customer[2] }}</td>
+
+                <td>{{ customer[3] }}</td>
+
+                <td>
+
+                    <a href="/edit_customer/{{ customer[0] }}">
+                        Edit
+                    </a>
+
+                    |
+
+                    <a href="/delete_customer/{{ customer[0] }}">
+                        Delete
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+
+        <br>
+
+        <a href="/dashboard">
+            Back to Dashboard
+        </a>
+
+    </div>
+
+</body>
+
+</html>

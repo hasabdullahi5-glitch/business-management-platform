@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Business Management Platform dashboard for managing sales, expenses, products, customers and business performance.">
+
+    <meta name="robots"
+          content="noindex, nofollow">
+
+    <meta name="theme-color"
+          content="#080d1a">
+
+    <meta property="og:title"
+          content="Business Management Platform Dashboard">
+
+    <meta property="og:description"
+          content="Manage your business sales, expenses, products and customers from one dashboard.">
+
+    <meta property="og:type"
+          content="website">
+
+    <title>Dashboard - Business Management Platform</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <h1>Business Management Platform</h1>
+
+        <p>Welcome to your business dashboard.</p>
+
+
+        <!-- Navigation -->
+
+        <nav class="dashboard-nav">
+
+            <a href="/dashboard">Dashboard</a>
+
+            <a href="/products">Products</a>
+
+            <a href="/customers">Customers</a>
+
+            <a href="/sales">Sales</a>
+
+            <a href="/expenses">Expenses</a>
+
+            <a href="/reports">Reports</a>
+
+            <a href="/settings">⚙ Settings</a>
+
+        </nav>
+
+
+        <!-- Dashboard Cards -->
+
+        <div class="dashboard-cards">
+
+            <div class="card">
+
+                <h3>Sales</h3>
+
+                <p>
+                    {{ currency_symbol }}{{ total_sales }}
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Expenses</h3>
+
+                <p>
+                    {{ currency_symbol }}{{ total_expenses }}
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Products</h3>
+
+                <p>
+                    {{ product_count }}
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Customers</h3>
+
+                <p>
+                    {{ customer_count }}
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Low Stock Alert -->
+
+        <h2>Low Stock Alert</h2>
+
+        {% if low_stock_products %}
+
+            <table>
+
+                <tr>
+
+                    <th>Product</th>
+
+                    <th>Price</th>
+
+                    <th>Quantity</th>
+
+                    <th>Status</th>
+
+                </tr>
+
+
+                {% for product in low_stock_products %}
+
+                <tr>
+
+                    <td>
+                        {{ product[1] }}
+                    </td>
+
+                    <td>
+                        {{ currency_symbol }}{{ product[2] }}
+                    </td>
+
+                    <td>
+                        {{ product[3] }}
+                    </td>
+
+                    <td>
+                        ⚠️ Low Stock
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        {% else %}
+
+            <div class="card">
+
+                <p>
+                    All products have enough stock.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+
+        <br>
+
+
+        <!-- Quick Actions -->
+
+        <h2>Quick Actions</h2>
+
+        <div class="quick-actions">
+
+            <a href="/products">
+                Manage Products
+            </a>
+
+            <a href="/customers">
+                Manage Customers
+            </a>
+
+            <a href="/sales">
+                Record Sale
+            </a>
+
+            <a href="/expenses">
+                Add Expense
+            </a>
+
+            <a href="/reports">
+                View Reports
+            </a>
+
+            <a href="/settings">
+                ⚙ Settings
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
