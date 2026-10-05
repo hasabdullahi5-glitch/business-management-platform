@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Settings - Business Management Platform</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <h1>⚙ Business Settings</h1>
+
+    <p>Manage your business preferences.</p>
+
+
+    <form method="POST" action="/settings">
+
+        <h2>Currency</h2>
+
+        <label>Select Currency</label>
+
+        <select name="currency" id="currency">
+
+            {% for code, symbol in currency_symbols.items() %}
+
+            <option value="{{ code }}"
+                {% if setting[0] == code %}selected{% endif %}>
+
+                {{ code }} ({{ symbol }})
+
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+
+        <br><br>
+
+
+        <label>
+
+            <input
+                type="checkbox"
+                name="auto_detect"
+                id="auto_detect"
+                {% if setting[1] == 1 %}checked{% endif %}
+            >
+
+            Automatically detect currency from browser region
+
+        </label>
+
+
+        <br><br>
+
+
+        <button type="submit">
+
+            Save Settings
+
+        </button>
+
+    </form>
+
+
+    <br>
+
+
+    <a href="/dashboard">
+
+        Back to Dashboard
+
+    </a>
+
+</div>
+
+
+<script>
+
+    // Currency mapping based on browser language/region
+
+    const currencyMap = {
+
+        "en-NG": "NGN",
+
+        "en-US": "USD",
+
+        "en-GB": "GBP",
+
+        "en-CA": "CAD",
+
+        "en-AU": "AUD",
+
+        "en-ZA": "ZAR",
+
+        "en-GH": "GHS",
+
+        "en-KE": "KES",
+
+        "en-IN": "INR",
+
+        "ar-AE": "AED",
+
+        "de-DE": "EUR",
+
+        "fr-FR": "EUR",
+
+        "es-ES": "EUR",
+
+        "it-IT": "EUR",
+
+        "pt-PT": "EUR"
+
+    };
+
+
+    // Get the browser language
+
+    const browserLanguage = navigator.language;
+
+
+    // Find the matching currency
+
+    const detectedCurrency =
+        currencyMap[browserLanguage];
+
+
+    // Check whether automatic detection is enabled
+
+    const autoDetect =
+        document.getElementById("auto_detect").checked;
+
+
+    // Only detect automatically the first time
+
+    if (
+        autoDetect &&
+        detectedCurrency &&
+        !localStorage.getItem("currency_detected")
+    ) {
+
+        fetch("/detect_currency", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+
+            body:
+                "currency=" +
+                encodeURIComponent(detectedCurrency)
+
+        })
+        .then(response => {
+
+            if (response.ok) {
+
+                localStorage.setItem(
+                    "currency_detected",
+                    "true"
+                );
+
+                location.reload();
+
+            }
+
+        });
+
+    }
+
+</script>
+
+</body>
+
+</html>
