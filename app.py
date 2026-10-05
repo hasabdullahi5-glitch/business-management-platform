@@ -207,7 +207,8 @@ def register():
             connection.commit()
             connection.close()
 
-            return "Account created successfully! You can now login."
+            # After registration, go directly to dashboard
+            return redirect("/dashboard")
 
         except sqlite3.IntegrityError:
 
