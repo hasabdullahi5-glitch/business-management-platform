@@ -128,10 +128,10 @@ body {
 
 .dashboard-nav {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     flex-wrap: wrap;
     margin-bottom: 35px;
-    padding: 15px;
+    padding: 10px;
     background: #111827;
     border: 1px solid #1f2937;
     border-radius: 14px;
@@ -139,7 +139,7 @@ body {
 
 .dashboard-nav a {
     display: inline-block;
-    padding: 11px 18px;
+    padding: 11px 17px;
     margin-bottom: 0;
     background: transparent;
     border: none;
@@ -347,8 +347,16 @@ body {
 
     .dashboard-cards {
         grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
     }
 
+    .dashboard-nav {
+        gap: 6px;
+    }
+
+    .dashboard-nav a {
+        padding: 10px 14px;
+    }
 }
 
 
@@ -358,39 +366,155 @@ body {
 
 @media (max-width: 600px) {
 
-    .dashboard {
-        padding: 25px 15px;
+    body {
+        background: #070b14;
     }
+
+    .dashboard {
+        padding: 16px 12px 30px;
+    }
+
+    /* Mobile heading */
 
     .dashboard h1 {
-        font-size: 25px;
-    }
-
-    .dashboard h2 {
-        font-size: 21px;
+        font-size: 23px;
+        line-height: 1.25;
+        margin-bottom: 6px;
     }
 
     .dashboard > p {
-        font-size: 14px;
+        font-size: 13px;
+        line-height: 1.5;
+        margin-bottom: 18px;
+    }
+
+    .dashboard h2 {
+        font-size: 19px;
+        margin-top: 25px;
+        margin-bottom: 12px;
+    }
+
+
+    /* Mobile navigation */
+
+    .dashboard-nav {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 7px;
+        padding: 8px;
+        margin-bottom: 22px;
+        border-radius: 13px;
+    }
+
+    .dashboard-nav a {
+        width: 100%;
+        padding: 10px 6px;
+        margin: 0;
+        text-align: center;
+        font-size: 12px;
+        border-radius: 8px;
+        background: #0b1220;
+        border: 1px solid #1f2937;
+    }
+
+    .dashboard-nav a:hover {
+        background: #dc2626;
+    }
+
+
+    /* Mobile cards */
+
+    .dashboard-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
         margin-bottom: 25px;
     }
 
-    .dashboard-cards {
-        grid-template-columns: 1fr;
-        gap: 15px;
+    .card {
+        min-width: 0;
+        padding: 16px 13px;
+        border-radius: 13px;
     }
 
-    .card {
-        padding: 20px;
+    .card h3 {
+        font-size: 12px;
+        margin-bottom: 9px;
     }
 
     .card p {
-        font-size: 24px;
+        font-size: 19px;
+        line-height: 1.2;
     }
 
+
+    /* Mobile forms */
+
+    .dashboard form {
+        max-width: 100%;
+        padding: 18px 15px;
+        border-radius: 14px;
+    }
+
+    .dashboard form label {
+        font-size: 13px;
+        margin-bottom: 6px;
+    }
+
+    .dashboard form input,
+    .dashboard form select {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .dashboard form button {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+
+    /* Mobile tables */
+
+    .dashboard table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        margin-top: 14px;
+        border-radius: 11px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .dashboard th,
+    .dashboard td {
+        padding: 11px 12px;
+        font-size: 12px;
+    }
+
+
+    /* Mobile quick actions */
+
+    .quick-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .quick-actions a {
+        width: 100%;
+        text-align: center;
+        padding: 11px 7px;
+        font-size: 12px;
+        margin: 0;
+    }
+
+
+    /* Login/Register */
+
     .login-container {
-        margin: 40px auto;
-        padding: 25px 20px;
+        width: 100%;
+        max-width: calc(100% - 24px);
+        margin: 35px auto;
+        padding: 28px 20px;
+        border-radius: 16px;
     }
 
     .login-container h1 {
@@ -398,69 +522,83 @@ body {
     }
 
     .login-container h2 {
-        font-size: 18px;
+        font-size: 17px;
+        margin-bottom: 25px;
     }
 
-    .dashboard-nav {
-        flex-direction: column;
-        gap: 6px;
-        padding: 10px;
+    .login-container input {
+        padding: 12px;
+        font-size: 14px;
     }
 
-    .dashboard-nav a {
-        width: 100%;
-        text-align: center;
+    .login-container button {
+        padding: 13px;
+        font-size: 15px;
     }
 
-    .dashboard form {
-        padding: 20px;
+    .login-container p {
+        font-size: 13px;
     }
-
-    .dashboard table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
-
-    .quick-actions {
-        flex-direction: column;
-        gap: 8px;
-    }
-
-    .quick-actions a {
-        width: 100%;
-        text-align: center;
-    }
-
 }
 
 
 /* =========================
-   VERY SMALL PHONES
+   SMALL PHONES
 ========================= */
 
 @media (max-width: 380px) {
 
     .dashboard {
-        padding: 20px 10px;
-    }
-
-    .login-container {
-        max-width: calc(100% - 20px);
-        padding: 20px 15px;
+        padding: 14px 9px 25px;
     }
 
     .dashboard h1 {
-        font-size: 22px;
+        font-size: 21px;
     }
 
-    .dashboard form {
-        padding: 17px;
+    .dashboard-cards {
+        gap: 8px;
     }
 
-    .dashboard form input,
-    .dashboard form select {
-        font-size: 14px;
+    .card {
+        padding: 14px 11px;
     }
 
+    .card h3 {
+        font-size: 11px;
+    }
+
+    .card p {
+        font-size: 17px;
+    }
+
+    .dashboard-nav a {
+        font-size: 11px;
+        padding: 9px 4px;
+    }
+
+    .quick-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .login-container {
+        max-width: calc(100% - 18px);
+        padding: 23px 16px;
+    }
+}
+
+
+/* =========================
+   LARGE PHONES / TABLETS
+========================= */
+
+@media (min-width: 601px) and (max-width: 1000px) {
+
+    .dashboard-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dashboard-nav a {
+        font-size: 13px;
+    }
 }
